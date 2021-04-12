@@ -1,0 +1,46 @@
+*pcimArtifact* is a custom step to encapsulate the common processing steps around various
+ types of artifact created by the PCS Teams. It takes as a single parameter a Map, which will
+ be use to tell the steps the type and task to perform.
+
+ Types available to this sustom step:
+ - jar
+ - gem
+ - docker
+
+Tasks available to this custom step:
+- build: invoke techOpsPipelineStep.assembleArtifact().
+- test: invoke techOpsPipelineStep.testAndRecordCodeCoverage().
+- check: invoke techOpsPipelineStep.checkCodeAnalysis()
+- createGitTag: invoke a chained process
+  ```groovy
+  techOpsPipelineStep
+    .checkOutFrom(GITHUB_REPO, BRANCH_NAME)
+    .generateChangelog()
+    .createVersionFile()
+  ```
+- publish: invoke a chained process
+```groovy
+  techOpsPipelineStep
+    .checkOutFrom(GITHUB_REPO, BRANCH_NAME)
+    .publishToNexus("${config.id}")
+```
+
+Example:
+```groovy
+//Jenkinsfile
+pipeline {
+  stages{
+    stage ('build') {
+      step {
+        pcimArtifact type:'jar', task:'build'
+      }
+    }
+    stage ('test'){
+      step {
+        pcimArtifact type:'jar', task:'test'
+      }
+    }
+  }
+
+}
+```
