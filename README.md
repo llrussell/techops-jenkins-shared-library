@@ -1,6 +1,6 @@
-# pcim-jenkins-shared-library
+# techops-jenkins-shared-library
 This repository implements various helper methods and common 
-steps used within the PCIM Jenkins pipeline. This repository contains a 
+steps used within the Jenkins pipeline. This repository contains a 
 shared library for Jenkins that can be unit tested with JUnit and Mockito. 
 The general idea is:
 
@@ -51,10 +51,10 @@ This work was inspired by the following article, would like to give credit where
 
 ```groovy
 // add the following line and replace necessary values if you are not loading the library implicitly
-// @Library('pcim-jenkins-shared-library')_
+// @Library('techops-jenkins-shared-library')_
 
 import org.techops.cicd.jenkins.pipeline.TechOpsPipelineStep
-import gov.dhs.uscis.pcim.pcs.ioc.ContextRegistry
+import org.techops.cicd.jenkins.ioc.ContextRegistry
 
 ContextRegistry.registerDefaultContext(this, env)
 def techOpsPipelineStep = new techOpsPipelineStep()
