@@ -1,0 +1,14 @@
+pluginManagement {
+//    resolutionStrategy {
+//        eachPlugin {
+//            if (requested.id.id == 'pcim-pcs-gradle-plugin') {
+//                useModule("gov.dhs.uscis.pcim.pcs:pcim-pcs-gradle-plugin:${requested.version}")
+//            }
+//        }
+//    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()}
+}
+rootProject.name = 'techops-jenkins-shared-library'

@@ -1,0 +1,53 @@
+plugins {
+    id 'groovy'
+    //id "pcim-pcs-gradle-plugin" version "1.5.66"
+}
+
+description = "TechOps Jenkins Shared Library buildscript"
+
+//techOpsGradlePlugin {
+//    majorOffset = 1
+//    patchOffset = 0
+//}
+
+sourceCompatibility = 1.8
+repositories {
+    mavenLocal()
+    mavenCentral()
+    jcenter()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation "org.codehaus.groovy:groovy-all:$groovy_version"
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+}
+
+sourceSets {
+    main.groovy.srcDirs = ['src', 'vars']
+    test.groovy.srcDirs = ['test']
+}
+test.ignoreFailures = false
+
+//test {
+//    // minimize logging
+//    testLogging.maxGranularity = 0
+//
+//    // show stdout from tests
+//    onOutput { dest, event -> print event.message }
+//
+//    // show test results
+//    def results = []
+//    afterTest { desc, result -> println "${desc.className.split("\\.")[-1]}: " +
+//            "${desc.name}: ${result.resultType}" }
+//    afterSuite { desc, result -> if (desc.className) { results << result } }
+//
+//    // show summary
+//    doLast {
+//        println "Tests: ${results.sum { it.testCount }}" +
+//                ", Failures: ${results.sum { it.failedTestCount }}" +
+//                ", Errors: ${results.sum { it.exceptions.size() }}" +
+//                ", Skipped: ${results.sum { it.skippedTestCount }}"
+//    }
+//}
